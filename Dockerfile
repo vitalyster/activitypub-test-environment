@@ -22,6 +22,16 @@ RUN bundle add bigdecimal irb json foreman
 
 RUN rm .yarnclean && yarn install --pure-lockfile
 
+USER root
+
+RUN apk add icu libffi libxml2 libxslt libidn protobuf ruby
+
+RUN apk del gcc g++ libc-dev libffi-dev libxml2-dev libxslt-dev icu-dev libidn-dev postgresql-dev protobuf-dev make ruby-dev
+
+RUN rm -f /var/cache/apk/*
+
+USER mastodon
+
 ENV LOCAL_DOMAIN m.test
 ENV LOCAL_HTTPS true
 ENV STREAMING_API_BASE_URL ws://${LOCAL_DOMAIN}:4000
