@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 RUN apk add postgresql redis curl git yarn libc6-compat gcompat
 
@@ -16,7 +16,7 @@ RUN curl -L -O https://github.com/tootsuite/mastodon/archive/v${MASTODON_VERSION
 
 WORKDIR /home/mastodon/mastodon-${MASTODON_VERSION}
 
-RUN bundle config build.nokogiri --use-system-libraries && bundle install --path vendor/bundle
+RUN rm Gemfile.lock && bundle config build.nokogiri --use-system-libraries && bundle install --path vendor/bundle
 
 RUN bundle add bigdecimal irb json foreman
 
