@@ -10,7 +10,7 @@ USER mastodon
 
 WORKDIR /home/mastodon
 
-ENV MASTODON_VERSION 2.9.0
+ENV MASTODON_VERSION 2.9.2
 
 RUN curl -L -O https://github.com/tootsuite/mastodon/archive/v${MASTODON_VERSION}.tar.gz && tar -xzvf v${MASTODON_VERSION}.tar.gz
 
